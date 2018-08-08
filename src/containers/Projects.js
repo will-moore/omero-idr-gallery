@@ -29,7 +29,8 @@ class Projects extends Component {
   render() {
     return (
       <ul style={listGroup} >
-        {this.state.projects.map(p => (
+        {this.state.projects.length === 0 ? <ul style={listGroupItem}>Loading Studies...</ul> :
+        this.state.projects.map(p => (
           <li key={p.id}
               style={listGroupItem}>
             {p.name}
