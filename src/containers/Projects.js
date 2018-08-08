@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import fetchJsonp from 'fetch-jsonp';
+import { listGroup, listGroupItem } from '../styles';
 
 class Projects extends Component {
 
@@ -14,7 +15,11 @@ class Projects extends Component {
     fetchJsonp('http://idr.openmicroscopy.org/webgateway/proj/list/')
       .then(response => response.json())
       .then(projects => {
-        console.log('parsed json', projects)
+        projects.sort((a, b) => {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0
+        });
         this.setState({projects: projects});
       }).catch(function(ex) {
         console.log('parsing failed', ex)
@@ -23,9 +28,10 @@ class Projects extends Component {
 
   render() {
     return (
-      <ul>
+      <ul style={listGroup} >
         {this.state.projects.map(p => (
-          <li key={p.id}>
+          <li key={p.id}
+              style={listGroupItem}>
             {p.name}
           </li>
         ))
