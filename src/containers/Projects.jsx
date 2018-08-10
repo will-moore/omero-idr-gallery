@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fetchJsonp from 'fetch-jsonp';
-import { listGroup, listGroupItem } from '../styles';
+import UlGroup from '../lists/UlGroup';
+import LiGroupItem from '../lists/LiGroupItem';
 
 class Projects extends Component {
   constructor(props) {
@@ -28,22 +29,21 @@ class Projects extends Component {
   render() {
     const { projects } = this.state;
     return (
-      <ul style={listGroup}>
+      <UlGroup>
         {projects.length === 0 ? (
-          <ul style={listGroupItem}>
+          <LiGroupItem>
 Loading Studies...
-          </ul>
+          </LiGroupItem>
         )
           : projects.map(p => (
-            <li
+            <LiGroupItem
               key={p.id}
-              style={listGroupItem}
             >
               {p.name}
-            </li>
+            </LiGroupItem>
           ))
         }
-      </ul>
+      </UlGroup>
     );
   }
 }
