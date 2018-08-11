@@ -18,24 +18,30 @@ class Projects extends Component {
         projects.sort((a, b) => {
           if (a.name < b.name) return -1;
           if (a.name > b.name) return 1;
-          return 0
+          return 0;
         });
         this.setState({projects: projects});
-      }).catch(function(ex) {
-        console.log('parsing failed', ex)
-      })
+        }).catch((ex) => {
+          console.log('parsing failed', ex);
+        });
   }
 
   render() {
     return (
-      <ul style={listGroup} >
-        {this.state.projects.length === 0 ? <ul style={listGroupItem}>Loading Studies...</ul> :
-        this.state.projects.map(p => (
-          <li key={p.id}
-              style={listGroupItem}>
-            {p.name}
-          </li>
-        ))
+      <ul style={listGroup}>
+        {this.state.projects.length === 0 ? (
+          <ul style={listGroupItem}>
+Loading Studies...
+          </ul>
+        )
+          : this.state.projects.map(p => (
+            <li
+              key={p.id}
+              style={listGroupItem}
+            >
+              {p.name}
+            </li>
+          ))
         }
       </ul>
     );
