@@ -3,27 +3,26 @@ import fetchJsonp from 'fetch-jsonp';
 import { listGroup, listGroupItem } from '../styles';
 
 class Projects extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-        projects: []
+      projects: [],
     };
   }
 
   componentDidMount() {
     fetchJsonp('http://idr.openmicroscopy.org/webgateway/proj/list/')
       .then(response => response.json())
-      .then(projects => {
+      .then((projects) => {
         projects.sort((a, b) => {
           if (a.name < b.name) return -1;
           if (a.name > b.name) return 1;
           return 0;
         });
-        this.setState({projects: projects});
-        }).catch((ex) => {
-          console.log('parsing failed', ex);
-        });
+        this.setState({ projects });
+      }).catch((ex) => {
+        console.log('parsing failed', ex);
+      });
   }
 
   render() {
