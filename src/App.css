@@ -8,13 +8,26 @@
 }
 
 .App-logo {
-  height: 60px;
+  transform: scale(0.5);
+  top: -25px;
+  position: relative;
 }
 
 .App-header {
   background-color: #222;
-  padding: 20px;
   color: white;
+  height: 80px;
+  position: relative;
+}
+
+@keyframes growshrink {
+  0% { transform: rotate(0deg) }
+  50% { transform: rotate(180deg) }
+  100% { transform: rotate(360deg) }
+}
+
+.loading #logomark path {
+  animation: growshrink 2s ease infinite;
 }
 
 .App-title {
@@ -29,3 +42,15 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* svg */
+.st0{fill:#1976D2;
+  transform-origin: 53px 80px;}
+.st1{fill:#FF9800;
+  transform-origin: 53px 56px;}
+.st2{fill:#F44336;
+  transform-origin: 53px 32px;}
+.st3{fill:#9C27B0;
+  transform-origin: 53px 56px;}
+.st4{fill:#FFC107;
+  transform-origin: 53px 56px;}
