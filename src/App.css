@@ -54,3 +54,10 @@
   transform-origin: 53px 56px;}
 .st4{fill:#FFC107;
   transform-origin: 53px 56px;}
+
+
+@media screen and (min-width: 820px) {
+  ul {
+    max-width: 400px;
+  }
+}
