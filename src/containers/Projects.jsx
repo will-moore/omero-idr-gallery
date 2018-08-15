@@ -10,6 +10,7 @@ class Projects extends Component {
     this.state = {
       projects: [],
     };
+    this.setProjectId = this.setProjectId.bind(this);
   }
 
   componentDidMount() {
@@ -30,20 +31,34 @@ class Projects extends Component {
       });
   }
 
+  setProjectId(event) {
+    const { setProjectId } = this.props;
+    const projectId = event.target.getAttribute('data-projectid');
+    setProjectId(parseInt(projectId, 10));
+  }
+
   render() {
     const { projects } = this.state;
     return (
       <UlGroup>
         {projects.length === 0 ? (
           <LiGroupItem>
-Loading Studies...
+            <span>
+              { 'Loading Studies...' }
+            </span>
           </LiGroupItem>
         )
           : projects.map(p => (
             <LiGroupItem
               key={p.id}
             >
-              {p.name}
+              <button
+                onClick={this.setProjectId}
+                type="button"
+                data-projectid={p.id}
+              >
+                {p.name}
+              </button>
             </LiGroupItem>
           ))
         }
@@ -54,6 +69,7 @@ Loading Studies...
 
 Projects.propTypes = {
   setLoading: PropTypes.func.isRequired,
+  setProjectId: PropTypes.func.isRequired,
 };
 
 export default Projects;

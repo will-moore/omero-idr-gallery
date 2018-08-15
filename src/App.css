@@ -57,7 +57,33 @@
 
 
 @media screen and (min-width: 820px) {
-  ul {
+  .containerContainer {
     max-width: 400px;
   }
+}
+
+.containerContainer {
+  position: relative;
+}
+
+.containerContainer ul {
+  width: 100%;
+  position: absolute;
+  transition: left 0.3s ease-in-out;
+}
+
+.containerContainer ul:first-child {
+  left: 0;
+}
+
+.containerContainer ul:nth-child(2) {
+  left: 100%;
+}
+
+.projectChosen ul:first-child {
+  left: -100%;
+}
+
+.projectChosen ul:nth-child(2) {
+  left: 0;
 }
