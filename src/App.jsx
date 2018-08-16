@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import IdrLogo from './svg/IdrLogo';
 import './App.css';
 import Projects from './containers/Projects';
-import Datasets from './containers/Datasets';
 
 class App extends Component {
   constructor(props) {
@@ -34,13 +33,15 @@ class App extends Component {
         </header>
         <div className={`containerContainer ${projectChosen}`}>
           <Projects
+            url="http://idr.openmicroscopy.org/webgateway/proj/list/"
             setLoading={this.setLoading}
-            setProjectId={this.setProjectId}
+            setSelectedId={this.setProjectId}
           />
           {projectId && (
-            <Datasets
+            <Projects
+              url={`http://idr.openmicroscopy.org/webgateway/proj/${projectId}/children/`}
               setLoading={this.setLoading}
-              projectId={projectId}
+              setSelectedId={this.setProjectId}
             />)}
         </div>
       </div>

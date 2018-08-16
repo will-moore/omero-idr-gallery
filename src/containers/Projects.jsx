@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import fetchJsonp from 'fetch-jsonp';
 import UlGroup from '../lists/UlGroup';
 import LiGroupItem from '../lists/LiGroupItem';
+import { buttonItem } from '../styles';
 
 class Projects extends Component {
   constructor(props) {
@@ -10,13 +11,13 @@ class Projects extends Component {
     this.state = {
       projects: [],
     };
-    this.setProjectId = this.setProjectId.bind(this);
+    this.setSelectedId = this.setSelectedId.bind(this);
   }
 
   componentDidMount() {
-    const { setLoading } = this.props;
+    const { url, setLoading } = this.props;
     setLoading(true);
-    fetchJsonp('http://idr.openmicroscopy.org/webgateway/proj/list/')
+    fetchJsonp(url)
       .then(response => response.json())
       .then((projects) => {
         setLoading(false);
@@ -31,10 +32,10 @@ class Projects extends Component {
       });
   }
 
-  setProjectId(event) {
-    const { setProjectId } = this.props;
+  setSelectedId(event) {
+    const { setSelectedId } = this.props;
     const projectId = event.target.getAttribute('data-projectid');
-    setProjectId(parseInt(projectId, 10));
+    setSelectedId(parseInt(projectId, 10));
   }
 
   render() {
@@ -44,7 +45,7 @@ class Projects extends Component {
         {projects.length === 0 ? (
           <LiGroupItem>
             <span>
-              { 'Loading Studies...' }
+              { 'Loading...' }
             </span>
           </LiGroupItem>
         )
@@ -53,9 +54,10 @@ class Projects extends Component {
               key={p.id}
             >
               <button
-                onClick={this.setProjectId}
+                onClick={this.setSelectedId}
                 type="button"
                 data-projectid={p.id}
+                style={buttonItem}
               >
                 {p.name}
               </button>
@@ -69,7 +71,8 @@ class Projects extends Component {
 
 Projects.propTypes = {
   setLoading: PropTypes.func.isRequired,
-  setProjectId: PropTypes.func.isRequired,
+  setSelectedId: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default Projects;
