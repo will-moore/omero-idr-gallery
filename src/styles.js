@@ -19,11 +19,10 @@ export const listGroupItem = {
   border: '1px solid rgba(0,0,0,.125)',
 };
 
-export const buttonItem = {
+export const blockLink = {
+  textDecoration: 'none',
   width: '100%',
   padding: '0.75rem 1.25rem',
-  background: 'transparent',
-  border: 'none',
-  outline: 'none',
   fontSize: 15,
+  display: 'inline-block',
 };

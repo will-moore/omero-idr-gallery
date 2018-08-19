@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import fetchJsonp from 'fetch-jsonp';
+import { Link } from 'react-router-dom';
 import UlGroup from '../lists/UlGroup';
 import LiGroupItem from '../lists/LiGroupItem';
-import { buttonItem } from '../styles';
+import { blockLink } from '../styles';
 
 class Projects extends Component {
   constructor(props) {
@@ -15,6 +16,23 @@ class Projects extends Component {
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { url } = this.props;
+    if (prevProps.url !== url) {
+      this.fetchData();
+    }
+  }
+
+  setSelectedId(event) {
+    const { setSelectedId } = this.props;
+    const projectId = event.target.getAttribute('data-projectid');
+    setSelectedId(parseInt(projectId, 10));
+  }
+
+  fetchData() {
     const { url, setLoading } = this.props;
     setLoading(true);
     fetchJsonp(url)
@@ -32,12 +50,6 @@ class Projects extends Component {
       });
   }
 
-  setSelectedId(event) {
-    const { setSelectedId } = this.props;
-    const projectId = event.target.getAttribute('data-projectid');
-    setSelectedId(parseInt(projectId, 10));
-  }
-
   render() {
     const { projects } = this.state;
     return (
@@ -53,14 +65,12 @@ class Projects extends Component {
             <LiGroupItem
               key={p.id}
             >
-              <button
-                onClick={this.setSelectedId}
-                type="button"
-                data-projectid={p.id}
-                style={buttonItem}
+              <Link
+                to={`/project/${p.id}`}
+                style={blockLink}
               >
                 {p.name}
-              </button>
+              </Link>
             </LiGroupItem>
           ))
         }
