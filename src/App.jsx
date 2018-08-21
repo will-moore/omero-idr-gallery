@@ -55,7 +55,7 @@ class App extends Component {
           </header>
           <div className={`containerContainer ${projectChosen}`}>
             <Projects
-              url="http://idr.openmicroscopy.org/webgateway/proj/list/"
+              url="https://idr.openmicroscopy.org/webgateway/proj/list/"
               setLoading={this.setLoading}
               setSelectedId={this.setProjectId}
             />

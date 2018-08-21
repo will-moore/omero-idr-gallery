@@ -9,7 +9,7 @@ const Datasets = ({ match, setLoading, setSelectedId }) => {
   const projectId = parseInt(match.params.id, 10);
   return (
     <Projects
-      url={`http://idr.openmicroscopy.org/webgateway/proj/${projectId}/children/`}
+      url={`https://idr.openmicroscopy.org/webgateway/proj/${projectId}/children/`}
       setLoading={setLoading}
       setSelectedId={setSelectedId}
     />
