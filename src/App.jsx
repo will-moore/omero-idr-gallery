@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import HomeLink from './links/HomeLink';
 import IdrLogo from './svg/IdrLogo';
 import './App.css';
 import Projects from './containers/Projects';
@@ -32,15 +33,10 @@ class App extends Component {
       projectId: undefined,
     };
     this.setLoading = this.setLoading.bind(this);
-    this.setProjectId = this.setProjectId.bind(this);
   }
 
   setLoading(loading) {
     this.setState({ loading });
-  }
-
-  setProjectId(projectId) {
-    this.setState({ projectId });
   }
 
   render() {
@@ -51,19 +47,20 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className={`App-header ${l}`}>
+            <div>
+              <HomeLink />
+            </div>
             <IdrLogo />
           </header>
           <div className={`containerContainer ${projectChosen}`}>
             <Projects
               url="https://idr.openmicroscopy.org/webgateway/proj/list/"
               setLoading={this.setLoading}
-              setSelectedId={this.setProjectId}
             />
             <PropsRoute
               path="/project/:id"
               component={Datasets}
               setLoading={this.setLoading}
-              setSelectedId={this.setProjectId}
             />
           </div>
         </div>

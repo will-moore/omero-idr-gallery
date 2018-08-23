@@ -12,7 +12,6 @@ class Projects extends Component {
     this.state = {
       projects: [],
     };
-    this.setSelectedId = this.setSelectedId.bind(this);
   }
 
   componentDidMount() {
@@ -24,12 +23,6 @@ class Projects extends Component {
     if (prevProps.url !== url) {
       this.fetchData();
     }
-  }
-
-  setSelectedId(event) {
-    const { setSelectedId } = this.props;
-    const projectId = event.target.getAttribute('data-projectid');
-    setSelectedId(parseInt(projectId, 10));
   }
 
   fetchData() {
@@ -81,7 +74,6 @@ class Projects extends Component {
 
 Projects.propTypes = {
   setLoading: PropTypes.func.isRequired,
-  setSelectedId: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired,
 };
 

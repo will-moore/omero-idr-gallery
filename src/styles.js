@@ -26,3 +26,15 @@ export const blockLink = {
   fontSize: 15,
   display: 'inline-block',
 };
+
+export const homeLink = {
+  position: 'absolute',
+  left: 0,
+  padding: 10,
+  display: 'inline-block',
+  border: 'solid #1976D2 1px',
+  borderRadius: 5,
+  textDecoration: 'none',
+  marginLeft: 12,
+  color: '#FF9800',
+};
