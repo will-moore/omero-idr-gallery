@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import HomeLink from './links/HomeLink';
 import IdrLogo from './svg/IdrLogo';
 import './App.css';
@@ -35,9 +34,18 @@ class App extends Component {
             <IdrLogo />
           </header>
           <div className={`containerContainer ${projectChosen}`}>
-            <Projects
-              url="https://idr.openmicroscopy.org/webgateway/proj/list/"
-              setLoading={this.setLoading}
+            <Route
+              exact
+              path="/"
+              render={
+                props => (
+                  <Projects
+                    {...props}
+                    setLoading={this.setLoading}
+                    url="https://idr.openmicroscopy.org/webgateway/proj/list/"
+                  />
+                )
+              }
             />
             <Route
               path="/project/:id"
