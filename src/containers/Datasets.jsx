@@ -1,23 +1,8 @@
 
-/* eslint-disable react/forbid-prop-types */
+import Containers from './Containers';
+import withData from '../fetch/withData';
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import Projects from './Projects';
-
-const Datasets = ({ match, setLoading }) => {
-  const projectId = parseInt(match.params.id, 10);
-  return (
-    <Projects
-      url={`https://idr.openmicroscopy.org/webgateway/proj/${projectId}/children/`}
-      setLoading={setLoading}
-    />
-  );
-};
-
-Datasets.propTypes = {
-  match: PropTypes.object.isRequired,
-  setLoading: PropTypes.func.isRequired,
-};
-
-export default Datasets;
+const withDatasets = withData(({ match }) => (
+  `https://idr.openmicroscopy.org/webgateway/proj/${match.params.id}/children/`
+));
+export default withDatasets(Containers);

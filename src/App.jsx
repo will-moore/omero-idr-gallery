@@ -37,15 +37,7 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={
-                props => (
-                  <Projects
-                    {...props}
-                    setLoading={this.setLoading}
-                    url="https://idr.openmicroscopy.org/webgateway/proj/list/"
-                  />
-                )
-              }
+              component={Projects}
             />
             <Route
               path="/project/:id"
