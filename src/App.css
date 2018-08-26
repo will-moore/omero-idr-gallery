@@ -46,11 +46,6 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 /* svg */
 .st0{fill:#1976D2;
   transform-origin: 53px 80px;}
@@ -78,20 +73,4 @@
   width: 100%;
   position: absolute;
   transition: left 0.3s ease-in-out;
-}
-
-.containerContainer ul:first-child {
-  left: 0;
-}
-
-.containerContainer ul:nth-child(2) {
-  left: 100%;
-}
-
-.projectChosen ul:first-child {
-  left: -100%;
-}
-
-.projectChosen ul:nth-child(2) {
-  left: 0;
 }
