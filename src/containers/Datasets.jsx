@@ -1,8 +1,8 @@
 
 import Containers from './Containers';
-import withData from '../fetch/withData';
+import connect from '../fetch/connect';
 
-const withDatasets = withData(({ match }) => (
-  `https://idr.openmicroscopy.org/webgateway/proj/${match.params.id}/children/`
-));
+const withDatasets = connect(({ match }) => ({
+  data: `https://idr.openmicroscopy.org/webgateway/proj/${match.params.id}/children/`,
+}));
 export default withDatasets(Containers);

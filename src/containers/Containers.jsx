@@ -7,14 +7,8 @@ import { blockLink } from '../styles';
 
 const Containers = ({ data }) => (
   <UlGroup>
-    {data.length === 0 ? (
-      <LiGroupItem>
-        <span>
-          { 'Loading...' }
-        </span>
-      </LiGroupItem>
-    )
-      : data.map(p => (
+    {data.fulfilled ?
+      data.value.map(p => (
         <LiGroupItem
           key={p.id}
         >
@@ -25,13 +19,17 @@ const Containers = ({ data }) => (
             {p.name}
           </Link>
         </LiGroupItem>
-      ))
+      )) : (
+        <span>
+          {'Loading'}
+        </span>
+      )
     }
   </UlGroup>
 );
 
 Containers.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Containers;

@@ -1,5 +1,7 @@
 import Containers from './Containers';
-import withData from '../fetch/withData';
+import connect from '../fetch/connect';
 
-const withProjects = withData('https://idr.openmicroscopy.org/webgateway/proj/list/');
+const withProjects = connect(() => ({
+  data: 'https://idr.openmicroscopy.org/webgateway/proj/list/',
+}));
 export default withProjects(Containers);
