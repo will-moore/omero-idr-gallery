@@ -6,6 +6,12 @@ import fetchJsonp from 'fetch-jsonp';
 // with similar API for fetching.
 // See https://github.com/heroku/react-refetch#example
 
+// connect is a function that takes a function as it's only argument
+// We return a Higher order Component (function that wraps a component).
+// In constructor we call func(props) to get
+// a map of key: url. For each of these we try to load the url
+// in componentDidMount and the result is -> setState.
+// Finally we render the wrapped Component, adding our state to it's props! Simple!
 const connect = func => (Component => (
   class extends React.Component {
     constructor(props) {
