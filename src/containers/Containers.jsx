@@ -7,26 +7,32 @@ import { blockLink } from '../styles';
 
 const Containers = ({ dataFetch }) => (
   <UlGroup>
-    {dataFetch.pending ? (<span>Loading</span>)
-    : dataFetch.rejected ? (<span>{dataFetch.reason}</span>)
-    : dataFetch.fulfilled ?
-        dataFetch.value.map(p => (
-          <LiGroupItem
-            key={p.id}
+    {dataFetch.pending && (
+      <span>
+        Loading
+      </span>
+    )}
+
+    {dataFetch.rejected && (
+      <span>
+        {dataFetch.reason}
+      </span>
+    )}
+
+    {dataFetch.fulfilled && (
+      dataFetch.value.map(p => (
+        <LiGroupItem
+          key={p.id}
+        >
+          <Link
+            to={`/project/${p.id}`}
+            style={blockLink}
           >
-            <Link
-              to={`/project/${p.id}`}
-              style={blockLink}
-            >
-              {p.name}
-            </Link>
-          </LiGroupItem>
-        )) : (
-          <span>
-            {'Loading'}
-          </span>
-        )
-    }
+            {p.name}
+          </Link>
+        </LiGroupItem>
+      ))
+    )}
   </UlGroup>
 );
 
