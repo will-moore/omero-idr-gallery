@@ -5,31 +5,40 @@ import UlGroup from '../lists/UlGroup';
 import LiGroupItem from '../lists/LiGroupItem';
 import { blockLink } from '../styles';
 
-const Containers = ({ data }) => (
+const Containers = ({ dataFetch }) => (
   <UlGroup>
-    {data.fulfilled ?
-      data.value.map(p => (
-        <LiGroupItem
-          key={p.id}
-        >
-          <Link
-            to={`/project/${p.id}`}
-            style={blockLink}
+    {dataFetch.pending ? (<span>Loading</span>)
+    : dataFetch.rejected ? (<span>{dataFetch.reason}</span>)
+    : dataFetch.fulfilled ?
+        dataFetch.value.map(p => (
+          <LiGroupItem
+            key={p.id}
           >
-            {p.name}
-          </Link>
-        </LiGroupItem>
-      )) : (
-        <span>
-          {'Loading'}
-        </span>
-      )
+            <Link
+              to={`/project/${p.id}`}
+              style={blockLink}
+            >
+              {p.name}
+            </Link>
+          </LiGroupItem>
+        )) : (
+          <span>
+            {'Loading'}
+          </span>
+        )
     }
   </UlGroup>
 );
 
 Containers.propTypes = {
-  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // see https://github.com/heroku/react-refetch#example
+  dataFetch: PropTypes.shape({
+    values: PropTypes.array,
+    pending: PropTypes.bool,
+    rejected: PropTypes.bool,
+    reason: PropTypes.string,
+    fulfilled: PropTypes.bool,
+  }).isRequired,
 };
 
 export default Containers;
