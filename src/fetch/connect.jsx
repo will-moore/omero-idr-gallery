@@ -18,7 +18,7 @@ const connect = func => (Component => (
       super(props);
       const endpoints = func(props);
       const state = Object.keys(endpoints).reduce((acc, cur) => {
-        acc[cur] = { pending: true, url: endpoints[cur] };
+        acc[cur] = { pending: false, url: endpoints[cur] };
         return acc;
       }, {});
       this.state = state;
@@ -31,14 +31,22 @@ const connect = func => (Component => (
     }
 
     fetch(key) {
+      this.setState((prevState) => {
+        const s = Object.assign({}, prevState);
+        s[key] = { pending: true };
+        return s;
+      });
+
       fetchJsonp(this.state[key].url)
         .then(response => response.json())
         .then((data) => {
-          data.sort((a, b) => {
-            if (a.name < b.name) return -1;
-            if (a.name > b.name) return 1;
-            return 0;
-          });
+          if (data.sort) {
+            data.sort((a, b) => {
+              if (a.name < b.name) return -1;
+              if (a.name > b.name) return 1;
+              return 0;
+            });
+          }
 
           this.setState((prevState) => {
             const s = Object.assign({}, prevState);

@@ -1,38 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { CSSTransitionGroup } from 'react-transition-group';
 import UlGroup from '../lists/UlGroup';
 import LiGroupItem from '../lists/LiGroupItem';
 import { blockLink } from '../styles';
 
 const Containers = ({ dataFetch }) => (
   <UlGroup>
-    {dataFetch.pending && (
-      <span>
-        Loading
-      </span>
-    )}
+    <CSSTransitionGroup
+      className="cssGroup"
+      transitionName="example"
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={300}
+    >
+      {dataFetch.pending && (
+        <li key="loading">
+          Loading
+        </li>
+      )}
 
-    {dataFetch.rejected && (
-      <span>
-        {dataFetch.reason}
-      </span>
-    )}
+      {dataFetch.rejected && (
+        <li key="rejected">
+          {dataFetch.reason}
+        </li>
+      )}
 
-    {dataFetch.fulfilled && (
-      dataFetch.value.map(p => (
-        <LiGroupItem
-          key={p.id}
-        >
-          <Link
-            to={`/project/${p.id}`}
-            style={blockLink}
+      {dataFetch.fulfilled && (
+        dataFetch.value.map(p => (
+          <LiGroupItem
+            key={p.id}
           >
-            {p.name}
-          </Link>
-        </LiGroupItem>
-      ))
-    )}
+            <Link
+              to={`/project/${p.id}`}
+              style={blockLink}
+            >
+              {p.name}
+            </Link>
+          </LiGroupItem>
+        ))
+      )}
+    </CSSTransitionGroup>
   </UlGroup>
 );
 
