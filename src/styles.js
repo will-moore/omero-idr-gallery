@@ -15,7 +15,6 @@ export const listGroupItem = {
   display: 'block',
   padding: 0,
   marginBottom: -1,
-  backgroundColor: '#fff',
   border: '1px solid rgba(0,0,0,.125)',
 };
 
