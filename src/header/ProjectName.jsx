@@ -1,5 +1,7 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
+import { BASE_URL } from '../fetch/constants';
 import connect from '../fetch/connect';
 
 const ProjectName = ({ projectFetch }) => (
@@ -30,6 +32,6 @@ ProjectName.propTypes = {
 };
 
 const withProjects = connect(({ match }) => ({
-  projectFetch: `https://idr.openmicroscopy.org/webgateway/proj/${match.params.id}/detail/`,
+  projectFetch: `${BASE_URL}/webgateway/proj/${match.params.id}/detail/`,
 }));
 export default withProjects(ProjectName);
