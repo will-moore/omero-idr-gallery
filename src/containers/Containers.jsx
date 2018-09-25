@@ -12,7 +12,7 @@ const Containers = ({ dataFetch }) => (
       className="cssGroup"
       transitionName="example"
       transitionEnterTimeout={500}
-      transitionLeaveTimeout={300}
+      transitionLeaveTimeout={0}
     >
       {dataFetch.pending && (
         <li key="loading">
@@ -27,9 +27,10 @@ const Containers = ({ dataFetch }) => (
       )}
 
       {dataFetch.fulfilled && (
-        dataFetch.value.map(p => (
+        dataFetch.value.map((p, i) => (
           <LiGroupItem
             key={p.id}
+            index={i}
           >
             <Link
               to={`/project/${p.id}`}
