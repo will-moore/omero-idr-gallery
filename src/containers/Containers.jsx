@@ -8,18 +8,19 @@ import { blockLink } from '../styles';
 
 const Containers = ({ dataFetch }) => (
   <UlGroup>
+    {dataFetch.pending && (
+      <LiGroupItem>
+        <span style={blockLink}>
+          Loading...
+        </span>
+      </LiGroupItem>
+    )}
     <CSSTransitionGroup
       className="cssGroup"
       transitionName="example"
       transitionEnterTimeout={500}
       transitionLeaveTimeout={0}
     >
-      {dataFetch.pending && (
-        <li key="loading">
-          Loading
-        </li>
-      )}
-
       {dataFetch.rejected && (
         <li key="rejected">
           {dataFetch.reason}
