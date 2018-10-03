@@ -62,9 +62,9 @@ const connect = func => (Component => (
         });
     }
 
-    render(props) {
+    render() {
       return (
-        <Component {...props} {...this.state} />
+        <Component {...this.props} {...this.state} />
       );
     }
   }
