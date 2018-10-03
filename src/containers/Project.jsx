@@ -2,18 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BASE_URL } from '../fetch/constants';
+import MapAnnotations from '../annotations/MapAnnotations';
 import connect from '../fetch/connect';
 
 const Project = ({ dataFetch, match }) => (
   <div>
-    Description:
-    {dataFetch.fulfilled && (dataFetch.value.data.Description)}
+    {(dataFetch.fulfilled && dataFetch.value.data.Description) && (`Description: ${dataFetch.value.data.Description}`)}
     <hr />
     <Link
       to={`/project/${match.params.id}/datasets/`}
     >
       Datasets
     </Link>
+
+    <MapAnnotations
+      datatype="project"
+      id={match.params.id}
+    />
 
   </div>
 );
