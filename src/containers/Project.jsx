@@ -6,8 +6,8 @@ import connect from '../fetch/connect';
 
 const Project = ({ dataFetch, match }) => (
   <div>
-    Description: {dataFetch.fulfilled && (dataFetch.value.data.Description)}
-
+    Description:
+    {dataFetch.fulfilled && (dataFetch.value.data.Description)}
     <hr />
     <Link
       to={`/project/${match.params.id}/datasets/`}
@@ -28,6 +28,7 @@ Project.propTypes = {
     reason: PropTypes.string,
     fulfilled: PropTypes.bool,
   }).isRequired,
+  match: PropTypes.shape({}).isRequired,
 };
 
 const withData = connect(({ match }) => ({

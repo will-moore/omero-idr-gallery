@@ -28,16 +28,16 @@ const Containers = ({ dataFetch }) => (
       )}
 
       {dataFetch.fulfilled && (
-        dataFetch.value.map((p, i) => (
+        dataFetch.value.data.map((p, i) => (
           <LiGroupItem
-            key={p.id}
+            key={p['@id']}
             index={i}
           >
             <Link
-              to={`/project/${p.id}`}
+              to={`/project/${p['@id']}`}
               style={blockLink}
             >
-              {p.name}
+              {p.Name}
             </Link>
           </LiGroupItem>
         ))

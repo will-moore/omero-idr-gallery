@@ -1,6 +1,5 @@
 /* eslint-disable prefer-destructuring, react/destructuring-assignment */
 import React from 'react';
-import fetchJsonp from 'fetch-jsonp';
 
 // Designed to provide a subset of react-refetch API
 // with similar API for fetching.
@@ -37,23 +36,19 @@ const connect = func => (Component => (
         return s;
       });
 
-      fetchJsonp(this.state[key].url)
+      fetch(this.state[key].url, {
+        mode: 'cors',
+        credentials: 'include',
+      })
         .then(response => response.json())
         .then((data) => {
-          if (data.sort) {
-            data.sort((a, b) => {
-              if (a.name < b.name) return -1;
-              if (a.name > b.name) return 1;
-              return 0;
-            });
-          }
-
           this.setState((prevState) => {
             const s = Object.assign({}, prevState);
             s[key] = { pending: false, value: data, fulfilled: true };
             return s;
           });
-        }).catch((ex) => {
+        })
+        .catch((ex) => {
           this.setState((prevState) => {
             const s = Object.assign({}, prevState);
             s[key] = { pending: false, rejected: true, reason: ex.message };
