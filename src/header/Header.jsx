@@ -12,7 +12,7 @@ export default () => (
       component={IdrLogo}
     />
     <Route
-      path="/project/:id"
+      path="/project/:id/"
       component={ProjectName}
     />
   </div>
