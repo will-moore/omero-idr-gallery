@@ -4,6 +4,6 @@ import Container from './Container';
 import connect from '../fetch/connect';
 
 const withData = connect(({ match }) => ({
-  dataFetch: `${BASE_URL}/api/v0/m/projects/${match.params.id}/`,
+  dataFetch: `${BASE_URL}/api/v0/m/datasets/${match.params.id}/`,
 }));
 export default withData(Container);

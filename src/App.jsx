@@ -5,6 +5,8 @@ import './App.css';
 import Projects from './containers/Projects';
 import Project from './containers/Project';
 import Datasets from './containers/Datasets';
+import Dataset from './containers/Dataset';
+import Images from './containers/Images';
 
 const App = () => (
   <Router>
@@ -14,16 +16,37 @@ const App = () => (
         <Route
           exact
           path="/"
-          component={Projects}
+          render={props => (
+            <Projects {...props} datatype="project" />
+          )}
         />
         <Route
-          path="/project/:id/"
-          component={Project}
           exact
+          path="/projects/:id/"
+          render={props => (
+            <Project {...props} datatype="project" />
+          )}
         />
         <Route
-          path="/project/:id/datasets/"
-          component={Datasets}
+          exact
+          path="/projects/:id/datasets/"
+          render={props => (
+            <Datasets {...props} datatype="dataset" />
+          )}
+        />
+        <Route
+          exact
+          path="/datasets/:id/"
+          render={props => (
+            <Dataset {...props} datatype="dataset" />
+          )}
+        />
+        <Route
+          exact
+          path="/datasets/:id/images/"
+          render={props => (
+            <Images {...props} datatype="image" />
+          )}
         />
       </div>
     </div>

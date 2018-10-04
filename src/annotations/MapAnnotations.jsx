@@ -37,8 +37,8 @@ const MapAnnotations = ({ dataFetch }) => (
             <span
               style={blockLink}
             >
-              {ann.values.map(v => (
-                <div>
+              {ann.values.map((v, row) => (
+                <div key={`${row}-${v[1]}`}>
                   {v[0]}
                   {': '}
                   {v[1]}

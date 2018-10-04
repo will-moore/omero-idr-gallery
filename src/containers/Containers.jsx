@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { CSSTransitionGroup } from 'react-transition-group';
+import ObjectLink from './ObjectLink';
 import UlGroup from '../lists/UlGroup';
 import LiGroupItem from '../lists/LiGroupItem';
 import { blockLink } from '../styles';
 
-const Containers = ({ dataFetch }) => (
+const Containers = ({ dataFetch, datatype }) => (
   <UlGroup>
     {dataFetch.pending && (
       <LiGroupItem>
@@ -33,12 +33,13 @@ const Containers = ({ dataFetch }) => (
             key={p['@id']}
             index={i}
           >
-            <Link
-              to={`/project/${p['@id']}`}
+            <ObjectLink
               style={blockLink}
+              datatype={datatype}
+              id={p['@id']}
             >
               {p.Name}
-            </Link>
+            </ObjectLink>
           </LiGroupItem>
         ))
       )}
@@ -55,6 +56,7 @@ Containers.propTypes = {
     reason: PropTypes.string,
     fulfilled: PropTypes.bool,
   }).isRequired,
+  datatype: PropTypes.string.isRequired,
 };
 
 export default Containers;
