@@ -9,6 +9,9 @@ const childTypes = {
 const toCamelCase = text => `${text[0].toUpperCase()}${text.slice(1)}`;
 
 export default ({datatype, id, style}) => {
+  if (!childTypes[datatype]) {
+    return (<span />);
+  }
   return (
     <Link
       to={`/${datatype}s/${id}/${childTypes[datatype]}s/`}

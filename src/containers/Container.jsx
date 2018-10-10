@@ -5,6 +5,7 @@ import MapAnnotations from '../annotations/MapAnnotations';
 
 const Project = ({ dataFetch, match, datatype }) => (
   <div>
+    {(dataFetch.fulfilled && dataFetch.value.data.Name) && (`Name: ${dataFetch.value.data.Name}`)}
     {(dataFetch.fulfilled && dataFetch.value.data.Description) && (`Description: ${dataFetch.value.data.Description}`)}
     <hr />
     <ChildrenLink

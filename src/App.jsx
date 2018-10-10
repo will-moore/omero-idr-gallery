@@ -7,6 +7,7 @@ import Project from './containers/Project';
 import Datasets from './containers/Datasets';
 import Dataset from './containers/Dataset';
 import Images from './containers/Images';
+import Image from './containers/Image';
 
 const App = () => (
   <Router>
@@ -46,6 +47,13 @@ const App = () => (
           path="/datasets/:id/images/"
           render={props => (
             <Images {...props} datatype="image" />
+          )}
+        />
+        <Route
+          exact
+          path="/images/:id/"
+          render={props => (
+            <Image {...props} datatype="image" />
           )}
         />
       </div>
