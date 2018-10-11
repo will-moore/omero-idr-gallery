@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { listGroupItem } from '../styles';
 
 const LiGroupItem = ({ children, index }) => {
-  const style = Object.assign({}, { transitionDelay: (index * 0.02) + 's' }, listGroupItem);
+  const style = Object.assign({}, { transitionDelay: `${(index * 0.02)}s` }, listGroupItem);
   return (
     <li style={style}>
       { children }
@@ -16,6 +16,7 @@ LiGroupItem.propTypes = {
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.element,
   ]).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default LiGroupItem;

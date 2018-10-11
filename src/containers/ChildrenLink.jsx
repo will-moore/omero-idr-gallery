@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const childTypes = {
@@ -8,7 +9,7 @@ const childTypes = {
 
 const toCamelCase = text => `${text[0].toUpperCase()}${text.slice(1)}`;
 
-export default ({datatype, id, style}) => {
+const ChildrenLink = ({ datatype, id, style }) => {
   if (!childTypes[datatype]) {
     return (<span />);
   }
@@ -21,3 +22,11 @@ export default ({datatype, id, style}) => {
     </Link>
   );
 };
+
+ChildrenLink.propTypes = {
+  datatype: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  style: PropTypes.shape({}).isRequired,
+};
+
+export default ChildrenLink;
