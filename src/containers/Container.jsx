@@ -2,27 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ChildrenLink from './ChildrenLink';
 import MapAnnotations from '../annotations/MapAnnotations';
+import Header from '../header/Header';
 
-const Project = ({ dataFetch, match, datatype }) => (
+const Container = ({ dataFetch, match, datatype }) => (
   <div>
-    {(dataFetch.fulfilled && dataFetch.value.data.Name) && (`Name: ${dataFetch.value.data.Name}`)}
-    {(dataFetch.fulfilled && dataFetch.value.data.Description) && (`Description: ${dataFetch.value.data.Description}`)}
-    <hr />
-    <ChildrenLink
-      datatype={datatype}
-      id={match.params.id}
-    />
+    <Header dataFetch={dataFetch} />
+    <div className="containerContainer">
+      <div>
+        {dataFetch.rejected && dataFetch.reason}
+        {(dataFetch.fulfilled && dataFetch.value.data.Description) && (`Description: ${dataFetch.value.data.Description}`)}
+        <hr />
+        <ChildrenLink
+          datatype={datatype}
+          id={match.params.id}
+        />
 
-    <MapAnnotations
-      datatype={datatype}
-      id={match.params.id}
-    />
+        <MapAnnotations
+          datatype={datatype}
+          id={match.params.id}
+        />
 
+      </div>
+    </div>
   </div>
 );
 
 
-Project.propTypes = {
+Container.propTypes = {
 // see https://github.com/heroku/react-refetch#example
   dataFetch: PropTypes.shape({
     values: PropTypes.array,
@@ -35,4 +41,4 @@ Project.propTypes = {
   datatype: PropTypes.string.isRequired,
 };
 
-export default Project;
+export default Container;

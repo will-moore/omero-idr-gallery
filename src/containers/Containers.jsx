@@ -2,49 +2,55 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import ObjectLink from './ObjectLink';
+import Header from '../header/Header';
 import UlGroup from '../lists/UlGroup';
 import LiGroupItem from '../lists/LiGroupItem';
-import { blockLink } from '../styles';
 
 const Containers = ({ dataFetch, datatype }) => (
-  <UlGroup>
-    {dataFetch.pending && (
-      <LiGroupItem>
-        <span style={blockLink}>
-          Loading...
-        </span>
-      </LiGroupItem>
-    )}
-    <CSSTransitionGroup
-      className="cssGroup"
-      transitionName="example"
-      transitionEnterTimeout={500}
-      transitionLeaveTimeout={0}
-    >
-      {dataFetch.rejected && (
-        <li key="rejected">
-          {dataFetch.reason}
-        </li>
-      )}
-
-      {dataFetch.fulfilled && (
-        dataFetch.value.data.map((p, i) => (
+  <div>
+    <Header />
+    <div className="containerContainer">
+      <UlGroup>
+        {dataFetch.pending && (
           <LiGroupItem
-            key={p['@id']}
-            index={i}
+            index={0}
           >
-            <ObjectLink
-              style={blockLink}
-              datatype={datatype}
-              id={p['@id']}
-            >
-              {p.Name}
-            </ObjectLink>
+            <span>
+              Loading...
+            </span>
           </LiGroupItem>
-        ))
-      )}
-    </CSSTransitionGroup>
-  </UlGroup>
+        )}
+        <CSSTransitionGroup
+          className="cssGroup"
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={0}
+        >
+          {dataFetch.rejected && (
+            <li key="rejected">
+              {dataFetch.reason}
+            </li>
+          )}
+
+          {dataFetch.fulfilled && (
+            dataFetch.value.data.map((p, i) => (
+              <LiGroupItem
+                key={p['@id']}
+                index={i}
+              >
+                <ObjectLink
+                  datatype={datatype}
+                  id={p['@id']}
+                >
+                  {p.Name}
+                </ObjectLink>
+              </LiGroupItem>
+            ))
+          )}
+        </CSSTransitionGroup>
+      </UlGroup>
+    </div>
+  </div>
 );
 
 Containers.propTypes = {

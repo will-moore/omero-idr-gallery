@@ -36,10 +36,19 @@ const connect = func => (Component => (
         return s;
       });
 
-      fetch(this.state[key].url, {
+      const url = this.state[key].url;
+
+      fetch(url, {
         mode: 'cors',
         credentials: 'include',
       })
+        .then((response) => {
+          console.log(response.status);
+          if (response.status === 404) {
+            throw({ message: `404 not found ${ url }`});
+          }
+          return response;
+        })
         .then(response => response.json())
         .then((data) => {
           this.setState((prevState) => {

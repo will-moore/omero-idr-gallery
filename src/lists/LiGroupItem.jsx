@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { listGroupItem } from '../styles';
 
 const LiGroupItem = ({ children, index }) => {
-  const style = Object.assign({}, { transitionDelay: `${(index * 0.02)}s` }, listGroupItem);
+  const style = { transitionDelay: `${(index * 0.02)}s` };
   return (
     <li style={style}>
       { children }

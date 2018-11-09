@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import UlGroup from '../lists/UlGroup';
 import LiGroupItem from '../lists/LiGroupItem';
-import { blockLink } from '../styles';
 import connect from '../fetch/connect';
 import { BASE_URL } from '../fetch/constants';
 
 const MapAnnotations = ({ dataFetch }) => (
   <UlGroup>
     {dataFetch.pending && (
-      <LiGroupItem>
-        <span style={blockLink}>
+      <LiGroupItem
+        index={0}
+      >
+        <span>
           Loading...
         </span>
       </LiGroupItem>
@@ -28,15 +29,13 @@ const MapAnnotations = ({ dataFetch }) => (
         </li>
       )}
 
-      {dataFetch.fulfilled && (
+      {(dataFetch.fulfilled && dataFetch.value.annotations.length) && (
         dataFetch.value.annotations.map((ann, i) => (
           <LiGroupItem
             key={ann.id}
             index={i}
           >
-            <span
-              style={blockLink}
-            >
+            <span>
               {ann.values.map((v, row) => (
                 <div key={`${row}-${v[1]}`}>
                   {v[0]}

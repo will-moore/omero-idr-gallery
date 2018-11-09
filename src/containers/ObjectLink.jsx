@@ -11,7 +11,7 @@ const ObjectLink = ({ datatype, id, ...props }) => (
 
 ObjectLink.propTypes = {
   datatype: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default ObjectLink;

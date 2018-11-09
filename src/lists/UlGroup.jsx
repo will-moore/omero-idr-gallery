@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { listGroup } from '../styles';
 
 const UlGroup = ({ children }) => (
-  <ul style={listGroup}>
+  <ul>
     { children }
   </ul>
 );

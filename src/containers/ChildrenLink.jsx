@@ -9,14 +9,13 @@ const childTypes = {
 
 const toCamelCase = text => `${text[0].toUpperCase()}${text.slice(1)}`;
 
-const ChildrenLink = ({ datatype, id, style }) => {
+const ChildrenLink = ({ datatype, id }) => {
   if (!childTypes[datatype]) {
     return (<span />);
   }
   return (
     <Link
       to={`/${datatype}s/${id}/${childTypes[datatype]}s/`}
-      style={style}
     >
       {`${toCamelCase(childTypes[datatype])}s`}
     </Link>
@@ -26,7 +25,6 @@ const ChildrenLink = ({ datatype, id, style }) => {
 ChildrenLink.propTypes = {
   datatype: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  style: PropTypes.shape({}).isRequired,
 };
 
 export default ChildrenLink;
