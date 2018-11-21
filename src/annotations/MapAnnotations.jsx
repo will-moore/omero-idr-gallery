@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
-import UlGroup from '../lists/UlGroup';
-import LiGroupItem from '../lists/LiGroupItem';
 import connect from '../fetch/connect';
 import { BASE_URL } from '../fetch/constants';
+import MapAnnotation from './MapAnnotation';
 
 const MapAnnotations = ({ dataFetch }) => (
-  <UlGroup>
+  <ul>
     {dataFetch.pending && (
-      <LiGroupItem
+      <li
         index={0}
       >
         <span>
           Loading...
         </span>
-      </LiGroupItem>
+      </li>
     )}
     <CSSTransitionGroup
       className="cssGroup"
@@ -30,24 +29,14 @@ const MapAnnotations = ({ dataFetch }) => (
       )}
 
       {(dataFetch.fulfilled && dataFetch.value.annotations.length) && (
-        dataFetch.value.annotations.map((ann, i) => (
-          <LiGroupItem
-            key={ann.id}
-            index={i}
-          >
-            <span>
-              {ann.values.map((v, row) => (
-                <div key={`${row}-${v[1]}`}>
-                  {v[0]}
-                  {': '}
-                  {v[1]}
-                </div>))}
-            </span>
-          </LiGroupItem>
+        dataFetch.value.annotations.map(ann => (
+          <MapAnnotation
+            ann={ann}
+          />
         ))
       )}
     </CSSTransitionGroup>
-  </UlGroup>
+  </ul>
 );
 
 MapAnnotations.propTypes = {

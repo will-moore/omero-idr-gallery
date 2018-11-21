@@ -15,6 +15,7 @@ const ChildrenLink = ({ datatype, id }) => {
   }
   return (
     <Link
+      className="button"
       to={`/${datatype}s/${id}/${childTypes[datatype]}s/`}
     >
       {`${toCamelCase(childTypes[datatype])}s`}

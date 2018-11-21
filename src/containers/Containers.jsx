@@ -3,22 +3,20 @@ import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import ObjectLink from './ObjectLink';
 import Header from '../header/Header';
-import UlGroup from '../lists/UlGroup';
-import LiGroupItem from '../lists/LiGroupItem';
 
 const Containers = ({ dataFetch, datatype }) => (
   <div>
     <Header />
     <div className="containerContainer">
-      <UlGroup>
+      <ul>
         {dataFetch.pending && (
-          <LiGroupItem
+          <li
             index={0}
           >
             <span>
               Loading...
             </span>
-          </LiGroupItem>
+          </li>
         )}
         <CSSTransitionGroup
           className="cssGroup"
@@ -34,9 +32,10 @@ const Containers = ({ dataFetch, datatype }) => (
 
           {dataFetch.fulfilled && (
             dataFetch.value.data.map((p, i) => (
-              <LiGroupItem
+              <li
                 key={p['@id']}
-                index={i}
+                style={{ transitionDelay: `${(i * 0.02)}s` }}
+                className="underline"
               >
                 <ObjectLink
                   datatype={datatype}
@@ -44,11 +43,11 @@ const Containers = ({ dataFetch, datatype }) => (
                 >
                   {p.Name}
                 </ObjectLink>
-              </LiGroupItem>
+              </li>
             ))
           )}
         </CSSTransitionGroup>
-      </UlGroup>
+      </ul>
     </div>
   </div>
 );

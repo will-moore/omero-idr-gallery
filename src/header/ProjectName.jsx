@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { BASE_URL } from '../fetch/constants';
 import connect from '../fetch/connect';
 
-const ProjectName = ({ projectFetch }) => (
+const ContainerName = ({ projectFetch }) => (
   <div>
     {projectFetch.pending && (
       <span>
-        Loading
+        Loading...
       </span>
     )}
 
@@ -17,11 +17,11 @@ const ProjectName = ({ projectFetch }) => (
         {projectFetch.reason}
       </span>
     )}
-    { projectFetch.fulfilled && projectFetch.value.name }
+    { projectFetch.fulfilled && projectFetch.value.data.Name }
   </div>
 );
 
-ProjectName.propTypes = {
+ContainerName.propTypes = {
   projectFetch: PropTypes.shape({
     values: PropTypes.array,
     pending: PropTypes.bool,
@@ -32,6 +32,12 @@ ProjectName.propTypes = {
 };
 
 const withProjects = connect(({ match }) => ({
-  projectFetch: `${BASE_URL}/webgateway/proj/${match.params.id}/detail/`,
+  projectFetch: `${BASE_URL}/api/v0/m/projects/${match.params.id}/`,
 }));
-export default withProjects(ProjectName);
+export const ProjectName = withProjects(ContainerName);
+
+
+const withDatasets = connect(({ match }) => ({
+  projectFetch: `${BASE_URL}/api/v0/m/datasets/${match.params.id}/`,
+}));
+export const DatasetName = withDatasets(ContainerName);

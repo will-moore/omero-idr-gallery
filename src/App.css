@@ -38,6 +38,10 @@
   100% { transform: rotate(360deg) }
 }
 
+h3, h4 {
+  text-transform: uppercase;
+}
+
 .loading #logomark path {
   animation: growshrink 2s ease infinite;
 }
@@ -104,8 +108,10 @@ li {
   position: relative;
   display: block;
   padding: 0;
-  margin-bottom: -1;
-  border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.underline {
+  border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
 
 li a {
@@ -115,6 +121,77 @@ li a {
   font-size: 15;
   display: inline-block;
   color: black;
+}
+
+.button {
+  margin: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  color: #fff;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  background-color: #ff9800;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  min-height: 36px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  outline: none;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  vertical-align: middle;
+  justify-content: center;
+  -moz-appearance: none;
+  text-decoration: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+table {
+  width: 100%;
+  display: table;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+td {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+th, td {
+  padding: 6px;
+  text-align: left;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  vertical-align: inherit;
+}
+
+.map_ann th, .map_ann td {
+  width: 50%;
+}
+
+.map_ann {
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 0px 1px -2px rgba(0, 0, 0, 0.12);
+  margin: 10px;
+  border-radius: 4px;
 }
 
 /* not used just now */
