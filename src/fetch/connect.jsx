@@ -43,9 +43,8 @@ const connect = func => (Component => (
         credentials: 'include',
       })
         .then((response) => {
-          console.log(response.status);
           if (response.status === 404) {
-            throw({ message: `404 not found ${ url }`});
+            throw new Error(`404 not found ${url}`);
           }
           return response;
         })
