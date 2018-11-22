@@ -8,6 +8,7 @@ const config = {
   'openmicroscopy.org/mapr/organism': 'Organism',
   'openmicroscopy.org/mapr/phenotype': 'Phenotype',
   'openmicroscopy.org/omero/bulk_annotations': 'Others',
+  'openmicroscopy.org/omero/client/mapAnnotation': ' ',
 };
 
 const MaprNamespace = ({ ns }) => (

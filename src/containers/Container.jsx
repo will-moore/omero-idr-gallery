@@ -14,8 +14,11 @@ const Container = ({ dataFetch, match, datatype }) => (
           {' ID: '}
           {match.params.id}
         </h4>
-        {dataFetch.rejected && dataFetch.reason}
-        {(dataFetch.fulfilled && dataFetch.value.data.Description) && (`Description: ${dataFetch.value.data.Description}`)}
+
+        <div>
+          {dataFetch.rejected && dataFetch.reason}
+          {(dataFetch.fulfilled && dataFetch.value.data.Description) && (`Description: ${dataFetch.value.data.Description}`)}
+        </div>
 
         <ChildrenLink
           datatype={datatype}
